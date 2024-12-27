@@ -2,7 +2,7 @@
 
 set -e
 
-CONFIGPATH=${CONFIGPATH:-'/etc/samba/container-default.conf'}
+CONFIG_PATH=${CONFIG_PATH:-'/etc/samba/container-default.conf'}
 UID=${UID:-1000}
 USERNAME=${USERNAME:-'user'}
 echo Username: "$USERNAME"
@@ -39,6 +39,6 @@ printf '%s\n%s\n' "$PASSWORD" "$PASSWORD" | smbpasswd -s -a "$USERNAME" > /dev/n
 USERNAME=$USERNAME perl -p -i -e 's/^\s*valid users\s*\=\s*nobody\s*$/   valid users \= $ENV{USERNAME}\n/g' '/etc/samba/container-default.conf'
 
 echo '---- smbd Config ----'
-yes | testparm "$CONFIGPATH"
+yes | testparm "$CONFIG_PATH"
 echo '---- Starting smbd ----'
-smbd --foreground --configfile="$CONFIGPATH" --debug-stdout --debuglevel=1 --no-process-group "$@"
+smbd --foreground --configfile="$CONFIG_PATH" --debug-stdout --debuglevel=1 --no-process-group "$@"
