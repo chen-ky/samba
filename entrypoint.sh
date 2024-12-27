@@ -12,6 +12,16 @@ then
     echo Password: "$PASSWORD"
 fi
 
+if [ -n "$ALLOW_HOSTS" ]
+then
+    echo hosts allow = "$ALLOW_HOSTS" > /etc/samba/whitelist.conf
+fi
+
+if [ -n "$DENY_HOSTS" ]
+then
+    echo hosts allow = "$DENY_HOSTS" > /etc/samba/blacklist.conf
+fi
+
 if ! getent passwd "$UID" > /dev/null;
 then
     # -s SHELL        Login shell
