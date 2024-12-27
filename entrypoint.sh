@@ -19,7 +19,7 @@ fi
 
 if [ -n "$DENY_HOSTS" ]
 then
-    echo hosts allow = "$DENY_HOSTS" > /etc/samba/blacklist.conf
+    echo hosts deny = "$DENY_HOSTS" > /etc/samba/blacklist.conf
 fi
 
 if ! getent passwd "$UID" > /dev/null;
