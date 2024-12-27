@@ -1,8 +1,35 @@
 # Samba
 
+![GitHub License](https://img.shields.io/github/license/chen-ky/samba)
+[![Container Publish](https://github.com/chen-ky/samba/actions/workflows/container-publish.yml/badge.svg)](https://github.com/chen-ky/samba/actions/workflows/container-publish.yml)
+
 Containerised samba share that is easy to use
 
-`podman run -it --rm -p 8445:445 -v './share:/share:z' --userns=keep-id:uid=$(id -u),gid=$(id -g) -u root ghcr.io/chen-ky/samba:latest`
+```sh
+podman pull ghcr.io/chen-ky/samba:latest
+```
+
+## Running the Container
+
+### Sharing the volume of another container
+
+```sh
+podman run --detach --rm --publish 8445:445 \
+    --volumes-from=<container_name> \
+    --volume '<volume_name>:/share' \
+    ghcr.io/chen-ky/samba:latest
+```
+
+### Sharing a local folder
+
+```sh
+podman run --detach --rm --publish 8445:445 \
+    --volume '<local_directory>:/share:z' \
+    --env "UID=$(id -u)" \
+    --userns=keep-id:uid=$(id -u),gid=$(id -g) \
+    --user root \
+    ghcr.io/chen-ky/samba:latest
+```
 
 ## Environment Variables
 
