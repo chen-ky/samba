@@ -18,8 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      pull-requests: write
+      contents: read
       packages: write
       # This is used to complete the identity challenge
       # with sigstore/fulcio when running outside of PRs.
@@ -71,3 +70,6 @@ jobs:
     needs: ["build"]
     if: ${{ github.event_name == 'pull_request' && needs.build.result == 'success' && github.actor == 'dependabot[bot]' && startsWith(github.head_ref, 'dependabot/') }}
     uses: ./.github/workflows/dependabot-auto-merge.yml
+    permissions:
+      contents: write
+      pull-requests: write
