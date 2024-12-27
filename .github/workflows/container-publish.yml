@@ -65,3 +65,11 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           file: Containerfile
+
+  auto-merge:
+    needs: ["build"]
+    if: ${{ needs.build.result == 'success' && github.actor == 'dependabot[bot]' && startsWith(github.head_ref, 'dependabot/') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger dependabot auto-merge
+        uses: ./.github/workflows/dependabot-auto-merge.yml
