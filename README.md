@@ -3,13 +3,17 @@
 ![GitHub License](https://img.shields.io/github/license/chen-ky/samba)
 [![Container Publish](https://github.com/chen-ky/samba/actions/workflows/container-publish.yml/badge.svg)](https://github.com/chen-ky/samba/actions/workflows/container-publish.yml)
 
-Containerised samba share that is easy to use
+Containerised samba share that is easy to use.
 
 ```sh
 podman pull ghcr.io/chen-ky/samba:latest
 ```
 
 ## Running the Container
+
+The examples here publishes the port to 8445. You can inspect the container output (for example, to get the randomly generated password) with `podman logs <container_name>`.
+
+You can access the share at `smb://localhost:8445/share/`. Replace the domain/IP and port according to your setup.
 
 ### Sharing the volume of another container
 
