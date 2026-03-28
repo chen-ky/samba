@@ -3,7 +3,7 @@ FROM docker.io/library/alpine:20260127
 LABEL org.opencontainers.image.source="https://github.com/chen-ky/samba/"
 LABEL org.opencontainers.image.licenses="MIT"
 
-RUN apk add --no-cache perl samba
+RUN apk upgrade --no-cache && apk add --no-cache perl samba
 
 COPY conf/ /etc/samba/
 COPY entrypoint.sh /entrypoint.sh
