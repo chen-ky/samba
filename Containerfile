@@ -1,4 +1,4 @@
-FROM docker.io/library/alpine:edge
+FROM docker.io/library/alpine:20260127
 
 RUN apk add --no-cache perl samba
 
