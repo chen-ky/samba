@@ -1,4 +1,4 @@
-FROM docker.io/library/alpine:20260127
+FROM docker.io/library/alpine:20260805
 
 LABEL org.opencontainers.image.source="https://github.com/chen-ky/samba/"
 LABEL org.opencontainers.image.licenses="MIT"
